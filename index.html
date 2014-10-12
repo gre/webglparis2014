@@ -59,8 +59,11 @@
       <div class="slides">
 
         <section>
-          <h1>GLSL.io</h1>
+          <h1>GLSL<a href="https://glsl.io/">.io</a></h1>
           <h2>the ultimate transition language</h2>
+          <h3 style="text-align: right; margin-top: 150px">
+          by <a href="https://twitter.com/greweb">@greweb</a>
+          </h3>
         </section>
 
         <section>
@@ -96,11 +99,11 @@
           </section>
           <section>
             <h2>Classical boilerplate for 2D</h2>
-            <p>We can just make 2 triangles filling the whole viewport</p>
             <img src="./images/webgl-rectangle.png" alt="" style="background: none; border: none">
+            <h4>We can just make 2 triangles filling the whole viewport</h4>
           </section>
           <section>
-            <h3>with a simple Vertex shader...</h3>
+            <h3>then with a simple Vertex shader...</h3>
             <pre><code class="glsl" data-trim>
 attribute vec2 position;
 void main () {
@@ -109,7 +112,7 @@ void main () {
             </code></pre>
           </section>
           <section>
-            <h3>...we can do a hello world Fragment!</h3>
+            <h3>...we can implement WebGL hello world!</h3>
             <pre><code class="glsl" data-trim>
 uniform vec2 resolution;
 void main () {
@@ -150,27 +153,31 @@ C'est un paradigme que j'aime appeler le Rendu Fonctionnel.
             </aside>
           </section>
           <section data-markdown>
-            | Procedural      |   Functional |
+            | "Procedural" style | "Functional" style |
             |---------------- |:------------:|
-            | **set of drawing primitives** | **ƒ: `position => color`** |
+            | set of drawing primitives | `ƒ: Point => Color` |
             | **bitmap** (generally) | **vectorial** (by design) |
             | *"draw here"* | *"am I here?"* |
             | what? / where? | how? |
             | simple, imperative | math, functional |
             | restricted to primitives | powerful, composable |
-            | generally faster | generally slower,... |
-            | | but easily scalable on GPU |
+            | generally faster | easily scalable on GPU |
           </section>
         </section>
         
 
         <section>
           <section>
-            <h2>stack.gl</h2>
+            <h2>
+            <a href="http://stack.gl/">stack.gl</a>
+            </h2>
             <h3>micro libraries for WebGL</h3>
-          </section>
-          <section>
-            <a href="http://stack.gl/">http://stack.gl/</a>
+            <blockquote>
+            stackgl is an open software ecosystem for WebGL, built on top of browserify and npm.
+            </blockquote>
+            <blockquote>
+              It is easy to use parts of stackgl à la carte, and because it is written from the bottom up, you can always drill down a layer.
+            </blockquote>
             <aside class="notes">
             </aside>
           </section>
@@ -179,19 +186,92 @@ C'est un paradigme que j'aime appeler le Rendu Fonctionnel.
         <section>
           <section>
             <h2>GLSL Transitions</h2>
+            <blockquote>
+              iPhoto like slideshow transitions using WebGL –
+              <a href="http://badassjs.com/post/72677810093/glsl-transition-iphoto-like-slideshow-transitions">@devongovett</a>
+            </blockquote>
+            <blockquote>
+              WebGL/GLSL transitions in your browser. Some of these blow my mind –
+              <a href="https://twitter.com/zeh/status/469854130866245633">@zeh</a>
+            </blockquote>
+            <blockquote>
+              The last place you'd expect to see WebGL –
+              <a href="http://creativejs.com/2014/01/the-last-place-youd-expect-to-see-webgl/">@creativejs</a>
+            </blockquote>
           </section>
           <section>
-            <a href="http://glslio.github.io/glsl-transition-examples/example3/">Example</a>
+            <h3>Like CSS Transitions but in WebGL</h3>
+          </section>
+          <section>
+            <a href="https://glsl.io/transition/2a3f2e907e1c0a152e60/embed">
+              <img src="./images/glsl-transition.png" alt="">
+            </a>
+          </section>
+          <section data-markdown data-trim>
+            ## The API
+            ```javascript
+            var T = GlslTransition(canvas);
+
+            var swap = T(swapFragmentCode);
+
+            swap({ from: fromImage, to: toImage }, 1000, BezierEasing(0.1, 0.5, 0.4, 0.9))
+              .then(...);
+            ```
+
+            [more infos](https://github.com/glslio/glsl-transition)
+          </section>
+          <section data-markdown data-trim>
+            ## GLSL Transition: fade
+
+            ```glsl
+            uniform sampler2D from, to;
+            uniform float progress;
+            uniform vec2 resolution;
+
+            void main() {
+              vec2 p = gl_FragCoord.xy / resolution.xy;
+              gl_FragColor = mix(texture2D(from, p), texture2D(to, p), progress);
+            }
+            ```
+
+            [Open in the editor](https://glsl.io/transition/new)
+          </section>
+          <section>
+            <h3>Some examples</h3>
+            <ul>
+              <li>
+                <a href="http://glslio.github.io/glsl-transition-examples/example3/">Transitions</a>
+              </li>
+              <li>
+                <a href="http://gre.github.io/gl-slideshow-example/">Slideshow + KenBurns effect</a>
+              </li>
+            </ul>
           </section>
         </section>
 
         <section>
           <section>
-            <h2>GLSL.io</h2>
+            <h2>
+              <a href="https://glsl.io">
+                GLSL.io
+              </a>
+            </h2>
+            <h3>platform for GLSL Transitions</h3>
             <p>
             Currently 53 transitions made by 18 contributors.
             </p>
+            <aside class="notes">
+              Présenter GLSL.io. Live coding.
+            </aside>
           </section>
+        </section>
+
+        <section>
+          <h1>Thanks</h1>
+          <h2>Questions?</h2>
+          <h3>
+          <a href="https://twitter.com/greweb">@greweb</a>
+          </h3>
         </section>
 
       </div>
