@@ -4,6 +4,8 @@
   <head>
     <meta charset="utf-8">
 
+    <base target=_blank>
+
     <title>WebGLParis2014</title>
 
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -27,6 +29,22 @@
         document.getElementsByTagName( 'head' )[0].appendChild( link );
       }
     </script>
+        <style type="text/css">
+      .reveal table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      .reveal th {
+        color: #fff;
+      }
+      .reveal th, .reveal td {
+        border: 1px solid #fff;
+        padding: 6px 16px;
+      }
+      .reveal pre {
+        font-size: .6em;
+      }
+    </style>
 
     <!--[if lt IE 9]>
     <script src="lib/js/html5shiv.js"></script>
@@ -100,19 +118,51 @@ void main () {
 }
             </code></pre>
             <img src="./images/hello-world.png" alt="">
+            <aside class="notes">
+on exprime la couleur de notre pixel en fonction de sa position.
+C'est un paradigme que j'aime appeler le Rendu Fonctionnel.
+            </aside>
           </section>
         </section>
 
         <section>
           <section>
-            <h2>"Functional rendering" paradigm</h2>
+            <h1>Functional rendering</h1>
+            <h2>paradigm</h2>
+            <aside class="notes">
+              car c'est simplement une fonction d'une Point vers une Color.
+            </aside>
           </section>
           <section>
             <h2>ƒ: Point(x,y) => Color(r,g,b,a)</h2>
+          </section>
+          <section>
+            <h2>Very different from classical graphics APIs</h2>
+            <img src="./images/shapes.png" alt="">
             <aside class="notes">
+              c'est très différent des APIs classiques de rendu,
+              tel que Canvas2D / java Graphics2D,...
+              qui sont très impérative.
+
+              "Dessine un rectangle ici" VS "ma position actuelle est t'elle dans le rectangle".
+
+              Ce qui amène à un code beaucoup plus fonctionnel et mathématique.
             </aside>
           </section>
+          <section data-markdown>
+            | Procedural      |   Functional |
+            |---------------- |:------------:|
+            | **set of drawing primitives** | **ƒ: `position => color`** |
+            | **bitmap** (generally) | **vectorial** (by design) |
+            | *"draw here"* | *"am I here?"* |
+            | what? / where? | how? |
+            | simple, imperative | math, functional |
+            | restricted to primitives | powerful, composable |
+            | generally faster | generally slower,... |
+            | | but easily scalable on GPU |
+          </section>
         </section>
+        
 
         <section>
           <section>
@@ -120,7 +170,9 @@ void main () {
             <h3>micro libraries for WebGL</h3>
           </section>
           <section>
-            <iframe src="http://stack.gl/" frameborder="0" width=800 height=600></iframe>
+            <a href="http://stack.gl/">http://stack.gl/</a>
+            <aside class="notes">
+            </aside>
           </section>
         </section>
 
@@ -128,11 +180,17 @@ void main () {
           <section>
             <h2>GLSL Transitions</h2>
           </section>
+          <section>
+            <a href="http://glslio.github.io/glsl-transition-examples/example3/">Example</a>
+          </section>
         </section>
 
         <section>
           <section>
             <h2>GLSL.io</h2>
+            <p>
+            Currently 53 transitions made by 18 contributors.
+            </p>
           </section>
         </section>
 
