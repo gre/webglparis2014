@@ -206,7 +206,43 @@ C'est un paradigme que j'aime appeler le Rendu Fonctionnel.
             </aside>
           </section>
           <section>
-          <h3>Code example</h3>
+            <h3><a href="https://github.com/stackgl/glslify">glslify</a></h3>
+            module system for GLSL
+          </section>
+          <section data-markdown data-trim>
+            ### Code example
+
+            ```javascript
+            var shell         = require('gl-now')();
+            var createShader  = require("gl-shader");
+            var createTexture = require("gl-texture2d");
+            var drawTriangle  = require("a-big-triangle");
+            var baboon        = require("baboon-image");
+            var glslify       = require('glslify');
+
+            var createShader = glslify({
+              vertex: './vertex.glsl',
+              fragment: './fragment.glsl'
+            });
+
+            var shader, texture;
+
+            shell.on("gl-init", function() {
+              var gl = shell.gl;
+              texture = createTexture(gl, baboon);
+              shader = createShader(gl);
+              shader.attributes.position.location = 0;
+            });
+            
+            shell.on("gl-render", function() {
+              shader.bind();
+              shader.uniforms.texture = texture.bind();
+              drawTriangle(shell.gl);
+            });
+            ```
+          </section>
+          <section>
+          <img src="https://camo.githubusercontent.com/8ca5bd94962b0243ec3f58f18dc7e8ed6ce47ed9/68747470733a2f2f7261772e6769746875622e636f6d2f6d696b6f6c616c7973656e6b6f2f676c2d7465787475726532642f6d61737465722f73637265656e73686f742e706e67" alt="">
           </section>
         </section>
 
@@ -287,17 +323,53 @@ C'est un paradigme que j'aime appeler le Rendu Fonctionnel.
             </p>
           </section>
           <section>
-            TODO develop
-          </section>
-          <section>
             <h2>
               <a href="https://glsl.io">
                 GLSL.io
               </a>
+              <aside class="notes">
+                Open GLSL.io and show home.
+              </aside>
             </h2>
             <aside class="notes">
-              Présenter GLSL.io. Live coding.
+              Live coding?
             </aside>
+          </section>
+          <section>
+            <h2>Future of GLSL.io?</h2>
+          </section>
+          <section>
+            <h3>
+              GLSL.io will remain
+            </h3>
+            <ul>
+              <li>Free Software (open-source, libre)</li>
+              <li>community-driven (people create/judge content)</li>
+              <li>decentralized (deploy your own)</li>
+            </ul>
+          </section>
+          <section data-markdown>
+            ## Goals
+            
+            - Embrace integration in existing Video Software
+              - [@rectalogic started a shad0r](https://github.com/rectalogic/shad0r) + `melt` PoC
+              - `ffmpeg`
+              - Graphical Video Software integration!
+            - Improve collaboration between creators
+            - Encourage more creation with awards?
+          </section>
+          <section>
+            <h2>The source code</h2>
+
+            <ul>
+              <li>
+                <a href="https://github.com/glslio">glslio on Github</a>
+              </li>
+              <li>
+                <a href="https://github.com/glslio/glsl.io">glslio/glsl.io</a>
+              </li>
+            </ul>
+            
           </section>
         </section>
 
