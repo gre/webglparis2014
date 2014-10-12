@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>WebGLParis2014</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/night.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+
+        <section>
+          <h1>GLSL.io</h1>
+          <h2>the ultimate transition language</h2>
+        </section>
+
+        <section>
+          <ul>
+            <li>WebGL as a 2D API</li>
+            <li>Functional rendering paradigm</li>
+            <li>stack.gl</li>
+            <li>GLSL Transitions</li>
+            <li>GLSL.io</li>
+          </ul>
+        </section>
+
+        <section>
+          <section>
+            <h2>WebGL as a 2D API</h2>
+          </section>
+          <section>
+            <h3>
+              WebGL = draw points, lines or triangles.
+            </h3>
+            <p>
+              an extra work is required to make 3D.
+            </p>
+            <br>
+            <blockquote>
+              "2D and 3D are just two possible usage patterns"
+              <a href="https://hacks.mozilla.org/2013/04/the-concepts-of-webgl/">– hacks.mozilla.org</a>
+            </blockquote>
+            <blockquote>
+              "WebGL is a 2D API"
+              <a href="http://www.html5rocks.com/en/tutorials/webgl/webgl_fundamentals/">– html5rocks.com</a>
+            </blockquote>
+          </section>
+          <section>
+            <h2>Classical boilerplate for 2D</h2>
+            <p>We can just make 2 triangles filling the whole viewport</p>
+            <img src="./images/webgl-rectangle.png" alt="" style="background: none; border: none">
+          </section>
+          <section>
+            <h3>with a simple Vertex shader...</h3>
+            <pre><code class="glsl" data-trim>
+attribute vec2 position;
+void main () {
+  gl_Position = vec4(2.0*position-1.0, 0.0, 1.0);
+}
+            </code></pre>
+          </section>
+          <section>
+            <h3>...we can do a hello world Fragment!</h3>
+            <pre><code class="glsl" data-trim>
+uniform vec2 resolution;
+void main () {
+  vec2 pos = gl_FragCoord.xy / resolution;
+  gl_FragColor = vec4(pos, 0.5, 1.0);
+}
+            </code></pre>
+            <img src="./images/hello-world.png" alt="">
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>"Functional rendering" paradigm</h2>
+          </section>
+          <section>
+            <h2>ƒ: Point(x,y) => Color(r,g,b,a)</h2>
+            <aside class="notes">
+            </aside>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>stack.gl</h2>
+            <h3>micro libraries for WebGL</h3>
+          </section>
+          <section>
+            <iframe src="http://stack.gl/" frameborder="0" width=800 height=600></iframe>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>GLSL Transitions</h2>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>GLSL.io</h2>
+          </section>
+        </section>
+
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+      controls: true,
+    progress: true,
+    history: true,
+    center: true,
+
+    theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+    transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+    // Parallax scrolling
+    // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+    // parallaxBackgroundSize: '2100px 900px',
+
+    // Optional libraries used to extend on reveal.js
+    dependencies: [
+    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+    { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+    { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+    { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+    { src: 'socket.io/socket.io.js', async: true },
+    { src: 'plugin/notes-server/client.js', async: true }
+    ]
+    });
+
+    </script>
+
+  </body>
+</html>
