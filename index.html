@@ -89,13 +89,32 @@
             </p>
             <br>
             <blockquote>
+              "WebGL is a 2D API"
+              <a href="http://www.html5rocks.com/en/tutorials/webgl/webgl_fundamentals/">– greggman @ html5rocks.com</a>
+            </blockquote>
+            <blockquote>
               "2D and 3D are just two possible usage patterns"
               <a href="https://hacks.mozilla.org/2013/04/the-concepts-of-webgl/">– hacks.mozilla.org</a>
             </blockquote>
-            <blockquote>
-              "WebGL is a 2D API"
-              <a href="http://www.html5rocks.com/en/tutorials/webgl/webgl_fundamentals/">– html5rocks.com</a>
-            </blockquote>
+          </section>
+          <section>
+            <h3>
+              Rendering pipeline
+            </h3>
+            <p>
+            <img src="./images/webgl-pipeline.png" alt="" style="max-height: 500px; border: none; background: none">
+            </p>
+            <p>
+              Credits: <a href="https://hacks.mozilla.org/2013/04/the-concepts-of-webgl/">hacks.mozilla.org</a>
+            </p>
+            <aside class="notes">
+              pipeline de rendu du webgl.
+              architecture parallele qui convient au GPU.
+              fragment shader et vertex shader sont 2 languages dédiés qui compile dans le GPU,
+              et qui ne nécessite pas d'accès CPU/GPU (très couteux).
+
+              on peut envoyer des données à travers les vertex (coord triangles) et les uniforms (paramètres d'entrée des shaders).
+            </aside>
           </section>
           <section>
             <h2>Classical boilerplate for 2D</h2>
@@ -122,8 +141,8 @@ void main () {
             </code></pre>
             <img src="./images/hello-world.png" alt="">
             <aside class="notes">
-on exprime la couleur de notre pixel en fonction de sa position.
-C'est un paradigme que j'aime appeler le Rendu Fonctionnel.
+              Expliquer comment ça marche:
+              gl_FragCoord, resolution, pos, gl_FragColor
             </aside>
           </section>
         </section>
@@ -133,6 +152,8 @@ C'est un paradigme que j'aime appeler le Rendu Fonctionnel.
             <h1>Functional rendering</h1>
             <h2>paradigm</h2>
             <aside class="notes">
+              on exprime la couleur de notre pixel en fonction de sa position.
+              C'est un paradigme que j'aime appeler le Rendu Fonctionnel.
               car c'est simplement une fonction d'une Point vers une Color.
             </aside>
           </section>
@@ -143,13 +164,11 @@ C'est un paradigme que j'aime appeler le Rendu Fonctionnel.
             <h2>Very different from classical graphics APIs</h2>
             <img src="./images/shapes.png" alt="">
             <aside class="notes">
-              c'est très différent des APIs classiques de rendu,
-              tel que Canvas2D / java Graphics2D,...
+              Penser le rendu complètement différement
+              des APIs classiques (Canvas2D / java Graphics2D)
               qui sont très impérative.
 
-              "Dessine un rectangle ici" VS "ma position actuelle est t'elle dans le rectangle".
-
-              Ce qui amène à un code beaucoup plus fonctionnel et mathématique.
+              + fonctionnel et + mathématique.
             </aside>
           </section>
           <section data-markdown>
@@ -203,7 +222,27 @@ C'est un paradigme que j'aime appeler le Rendu Fonctionnel.
               It is easy to use parts of stackgl à la carte, and because it is written from the bottom up, you can always drill down a layer.
             </blockquote>
             <aside class="notes">
+              WebGL: bas niveau. API très proche de l'API OpenGL C, possibilités de base limités, à vous de tout construire.
+
+              Donc: utiliser des libs.
+              pour ne pas start from scratch,
+              Ne pas réinventer la roue.
+              <br>
+              stackgl:
+              communauté pour créer un écosystème de libs WebGL.
+              <br>
+              stack-gl: approche bottom up, prenez ce que vous voulez.
+              Si vous avez l'habitude de faire du WebGL pure sans lib,
+              vous aimerez l'initiative,
+              vous pouvez choisir le niveau d'abstraction.
             </aside>
+          </section>
+          <section>
+            <h3><a href="https://www.npmjs.org/package/gl-shader">gl-shader</a></h3>
+            <p>More JavaScript-ish API:<p>
+            <p>
+              infer uniforms, bind them with JavaScript setters, DRY,...
+            </p>
           </section>
           <section>
             <h3><a href="https://github.com/stackgl/glslify">glslify</a></h3>
@@ -243,6 +282,11 @@ C'est un paradigme que j'aime appeler le Rendu Fonctionnel.
           </section>
           <section>
           <img src="https://camo.githubusercontent.com/8ca5bd94962b0243ec3f58f18dc7e8ed6ce47ed9/68747470733a2f2f7261772e6769746875622e636f6d2f6d696b6f6c616c7973656e6b6f2f676c2d7465787475726532642f6d61737465722f73637265656e73686f742e706e67" alt="">
+          </section>
+          <section>
+            <h2>
+            <a href="http://stack.gl/">stack.gl</a>
+            </h2>
           </section>
         </section>
 
